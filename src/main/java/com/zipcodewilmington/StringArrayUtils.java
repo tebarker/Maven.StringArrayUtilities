@@ -1,5 +1,7 @@
 package com.zipcodewilmington;
 
+import java.util.*;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -9,6 +11,8 @@ public class StringArrayUtils {
      * @return first element of specified array
      */ // TODO
     public static String getFirstElement(String[] array) {
+
+
         return array[0];
     }
 
@@ -17,6 +21,8 @@ public class StringArrayUtils {
      * @return second element in specified array
      */
     public static String getSecondElement(String[] array) {
+
+
         return array[1];
     }
 
@@ -25,7 +31,10 @@ public class StringArrayUtils {
      * @return last element in specified array
      */ // TODO
     public static String getLastElement(String[] array) {
-        return null;
+
+        int length = array.length;
+        return array[length-1];
+
     }
 
     /**
@@ -33,7 +42,10 @@ public class StringArrayUtils {
      * @return second to last element in specified array
      */ // TODO
     public static String getSecondToLastElement(String[] array) {
-        return null;
+
+        int length = array.length;
+        return array[length-2];
+
     }
 
     /**
@@ -42,7 +54,12 @@ public class StringArrayUtils {
      * @return true if the array contains the specified `value`
      */ // TODO
     public static boolean contains(String[] array, String value) {
-        return false;
+
+        List<String> stringArrayList = new ArrayList<>(Arrays.asList(array));
+        return stringArrayList.contains(value);
+
+
+
     }
 
     /**
@@ -50,7 +67,14 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
-        return null;
+        for (int i = 0; i < array.length/2; i++) {
+            String tempArr = array[i];
+            array[i] = array[array.length - i - 1];
+            array[array.length - i - 1] = tempArr;
+        }
+
+        return array;
+
     }
 
     /**
@@ -58,7 +82,17 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        return false;
+        boolean yesNo = true;
+        for (int i = 0; i <= array.length/2 + 1; i++) {
+            if (Objects.equals(array[i], array[array.length - 1 - i])) {
+
+            } else {
+                return false;
+            }
+        }
+        return (yesNo);
+
+
     }
 
     /**
@@ -66,7 +100,14 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        return false;
+
+        String arrayAsString = Arrays.toString(array);
+        String lowerCase = arrayAsString.toLowerCase();
+        int count = (int) lowerCase.chars().filter(i -> i >= 'a' && i <= 'z').distinct().count();
+
+        return (count == 26);
+
+
     }
 
     /**
@@ -75,6 +116,8 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
+
+
         return 0;
     }
 
