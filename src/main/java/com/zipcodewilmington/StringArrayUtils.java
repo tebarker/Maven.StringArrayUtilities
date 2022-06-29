@@ -133,7 +133,23 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+        int count = 0;
+        for (int i = 0; i <= array.length - 1; i++) {
+            if (array[i].equals(valueToRemove)) {
+                count ++;
+            }
+        }
+        String[] newArray = new String[array.length - count];
+        for (int index1 = 0, index2 = 0; index1 < array.length; index1++) {
+            if (Objects.equals(array[index1], valueToRemove)) {
+            } else {
+                newArray[index2] = array[index1];
+                index2++;
+            }
+        }
+        return newArray;
+
+
     }
 
     /**
@@ -141,7 +157,19 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+
+        List<String> newArrayList = new ArrayList<>(Arrays.asList(array));
+        for (int i = 1; i < newArrayList.size(); i++) {
+            if (newArrayList.get(i) == newArrayList.get(i-1)) {
+                newArrayList.remove(i);
+                i--;
+            }
+        }
+        int size = newArrayList.size();
+        String[] newArray = newArrayList.toArray(new String[0]);
+        return newArray;
+
+
     }
 
     /**
@@ -149,7 +177,22 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+
+        List<String> newArrayList = new ArrayList<>(Arrays.asList(array));
+        List<String> copiedArrayList = new ArrayList<>(newArrayList);
+        int copyCount = copiedArrayList.size() - 1;
+        for (int i = newArrayList.size()-2; i >= 0; i--) {
+            if (Objects.equals(newArrayList.get(i), copiedArrayList.get(copyCount))) {
+                newArrayList.set(i + 1, newArrayList.get(i) + newArrayList.get(i +1));
+                newArrayList.remove(i);
+                copyCount -= 1;
+            } else {
+                copyCount -= 1;
+            }
+        }
+        String[] outputArray = newArrayList.toArray(new String[0]);
+        return outputArray;
+
     }
 
 
